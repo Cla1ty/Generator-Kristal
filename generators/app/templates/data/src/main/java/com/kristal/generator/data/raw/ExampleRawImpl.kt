@@ -12,7 +12,7 @@ import javax.inject.Inject
  * Created by Dwi_Ari on 10/13/17.
  */
 
-internal class ExampleRawImpl
+class ExampleRawImpl
 @Inject internal constructor(
         private val rawManager: RawManager,
         private val serializer: Serializer

@@ -9,7 +9,7 @@ import java.io.File
  * Created by Dwi_Ari on 10/13/17.
  */
 
-internal abstract class BaseFile
+abstract class BaseFile
 internal constructor(
         private val context: Context,
         private val fileManager: FileManager,

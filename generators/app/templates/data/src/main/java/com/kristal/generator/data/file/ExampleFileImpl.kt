@@ -17,7 +17,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-internal class ExampleFileImpl
+class ExampleFileImpl
 @Inject internal constructor(
         context: Context,
         private val serializer: Serializer,

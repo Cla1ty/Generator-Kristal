@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Created by Dwi_Ari on 10/13/17.
  */
 
-internal class ExampleListEntity {
+class ExampleListEntity {
     @SerializedName("data")
     var data: List<ExampleEntity>? = null
 }

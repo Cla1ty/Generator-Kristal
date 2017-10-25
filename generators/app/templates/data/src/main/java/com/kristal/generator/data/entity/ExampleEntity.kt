@@ -9,7 +9,7 @@ import <%= appPackage %>.data.db.tools.Db
  * Created by Dwi_Ari on 10/11/17.
  */
 
-internal class ExampleEntity {
+class ExampleEntity {
     @SerializedName("id")
     var id: String? = null
 

@@ -7,6 +7,6 @@ import io.reactivex.Observable
  * Created by Dwi_Ari on 10/13/17.
  */
 
-internal interface ExampleRaw {
+interface ExampleRaw {
     fun alphabetEntityList(): Observable<ExampleListEntity>
 }
