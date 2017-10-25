@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["compileSdk"]
+    buildToolsVersion globalConfiguration["buildTools"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["minSdk"]
+        targetSdkVersion globalConfiguration["targetSdk"]
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes.each {
+        it.buildConfigField('String', 'KEY', "\"1556b0ae02e34f9c0b83e43bbeca883e\"")
+        it.buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+    }
+}
+
+dependencies {
+    compile project(':domain')
+
+    def dataDependencies = rootProject.ext.dataDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
+
+    compile dataDependencies.gson
+    compile dataDependencies.sqlbrite
+    compile dataDependencies.retrofit
+    compile dataDependencies.retrofitGson
+    compile dataDependencies.okHttpInterceptor
+    compile dataDependencies.rxJavaAdapter
+
+    kapt dataDependencies.daggerCompiler
+
+    testCompile dataTestDependencies.junit
+    testCompile dataTestDependencies.assertj
+//    testCompile dataTestDependencies.runner
+//    testCompile dataTestDependencies.ruler
+//
+//    androidTestCompile dataTestDependencies.runner
+//    androidTestCompile dataTestDependencies.ruler
+    androidTestCompile dataTestDependencies.espresso
+}

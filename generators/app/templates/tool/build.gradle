@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["compileSdk"]
+    buildToolsVersion globalConfiguration["buildTools"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["minSdk"]
+        targetSdkVersion globalConfiguration["targetSdk"]
+    }
+}
+
+dependencies {
+    def utilsDependencies = rootProject.ext.utilsDependencies
+    def utilsTestDependencies = rootProject.ext.utilsTestDependencies
+
+    compile utilsDependencies.kotlin
+    compile utilsDependencies.glide
+    compile utilsDependencies.support
+    compile utilsDependencies.recyclerView
+    compile utilsDependencies.constraintLayout
+    compile utilsDependencies.cardView
+
+    testCompile utilsTestDependencies.junit
+    testCompile utilsTestDependencies.assertj
+
+    androidTestCompile utilsTestDependencies.junit
+    androidTestCompile utilsTestDependencies.assertj
+    androidTestCompile utilsTestDependencies.runner
+    androidTestCompile utilsTestDependencies.rules
+}

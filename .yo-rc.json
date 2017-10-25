@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Dwi Ariyanto",
+      "authorEmail": "creatures99@gmail.com",
+      "authorUrl": "home"
+    }
+  }
+}
