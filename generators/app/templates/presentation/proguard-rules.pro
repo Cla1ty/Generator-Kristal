@@ -24,3 +24,5 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -dontwarn com.google.errorprone.annotations.*
+-dontwarn okio.**
+-dontwarn retrofit2.Platform$Java8

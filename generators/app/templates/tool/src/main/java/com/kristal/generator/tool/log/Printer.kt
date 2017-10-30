@@ -12,7 +12,7 @@ internal class Printer(
         private val limit: Class<*>) {
     private var processTime = 0L
 
-    fun generateTrace(data: Data) {
+    private fun generateTrace(data: Data) {
         val stackTrace = Throwable().stackTrace
 
         data.source = stackTrace[0]
@@ -36,59 +36,83 @@ internal class Printer(
         data.fileName = data.parent.fileName.split('.')[0]
     }
 
-    fun print(level: Int, value: Data.() -> Unit) {
-        val data = Data()
-
-        value(data)
+    fun getMessage(any: Any, data: Data) {
         generateTrace(data)
 
-        when {
-            data.messages != null -> {
-                for (i in 0 until data.messages!!.size) {
+        when (any) {
+            is String -> {
+                data.message = any
+            }
+            is List<*> -> {
+                for (i in 0 until any.size) {
                     if (i == 0) {
-                        data.message = "===== ${data.messages!![i].toUpperCase()} ====="
+                        data.message = "===== ${any[i].toString().toUpperCase()} ====="
                     } else {
-                        data.message += "\n${data.messages!![i]}"
+                        data.message += "\n${any[i]}"
                     }
                 }
                 data.message += "\n===== end ====="
             }
-            data.any != null -> {
-                data.message = "===== ${data.any!!.javaClass.simpleName.toUpperCase()} ====="
-                for (lField in data.any!!.javaClass.declaredFields) {
-                    if (lField.name == "\$change" || lField.name == "serialVersionUID")
+            is Throwable -> {
+                data.message = any.message!!
+                data.throwable = any
+            }
+            else -> {
+                data.message = "===== ${any.javaClass.simpleName.toUpperCase()} ====="
+                for (field in any.javaClass.declaredFields) {
+                    if (field.name == "\$change" || field.name == "serialVersionUID")
                         continue
 
-                    lField.isAccessible = true
-                    data.message += "\n" + lField.name + " : " + lField.get(data.any)
+                    field.isAccessible = true
+                    data.message += "\n" + field.name + " : " + field.get(any)
                 }
                 data.message += "\n===== end ====="
             }
         }
 
+        data.message += " ${data.link}"
+    }
+
+    fun printToSystem(level: Int, any: Any) {
+
+        val data = Data()
+        getMessage(any, data)
+
         when (level) {
             VERBOSE -> {
                 when (data.throwable == null) {
-                    true -> Log.v(TAG_DEFAULT, "${data.message} ${data.link}")
-                    else -> Log.v(TAG_DEFAULT, "${data.message} ${data.link}", data.throwable)
+                    true -> Log.v(TAG_DEFAULT, data.message)
+                    else -> Log.v(TAG_DEFAULT, data.message, data.throwable)
                 }
             }
             DEBUG -> {
                 when (data.throwable == null) {
-                    true -> Log.d(TAG_DEFAULT, "${data.message} ${data.link}")
-                    else -> Log.d(TAG_DEFAULT, "${data.message} ${data.link}", data.throwable)
+                    true -> Log.d(TAG_DEFAULT, data.message)
+                    else -> Log.d(TAG_DEFAULT, data.message, data.throwable)
                 }
             }
             INFO -> {
                 when (data.throwable == null) {
-                    true -> Log.i(TAG_DEFAULT, "${data.message} ${data.link}")
-                    else -> Log.i(TAG_DEFAULT, "${data.message} ${data.link}", data.throwable)
+                    true -> Log.i(TAG_DEFAULT, data.message)
+                    else -> Log.i(TAG_DEFAULT, data.message, data.throwable)
                 }
             }
             WARM -> {
                 when (data.throwable == null) {
-                    true -> Log.w(TAG_DEFAULT, "${data.message} ${data.link}")
-                    else -> Log.w(TAG_DEFAULT, "${data.message} ${data.link}", data.throwable)
+                    true -> Log.w(TAG_DEFAULT, data.message)
+                    else -> Log.w(TAG_DEFAULT, data.message, data.throwable)
+                }
+            }
+            ERROR -> {
+                when (data.throwable == null) {
+                    true -> Log.e(TAG_DEFAULT, data.message)
+                    else -> Log.e(TAG_DEFAULT, data.message, data.throwable)
+                }
+            }
+            ASSERT -> {
+                when (data.throwable == null) {
+                    true -> Log.wtf(TAG_DEFAULT, data.message)
+                    else -> Log.wtf(TAG_DEFAULT, data.message, data.throwable)
                 }
             }
         }
@@ -97,7 +121,7 @@ internal class Printer(
     fun root() {
         val stackTrace = Throwable().stackTrace
         for (trace in stackTrace) {
-            if (!trace.className.contains(packageName!!)) return
+            if (!trace.className.contains(packageName)) return
             val link = ".${trace.methodName}(${trace.fileName}:${trace.lineNumber})"
             Log.d(TAG_DEFAULT, link + "\n" + toString())
         }
@@ -123,10 +147,8 @@ internal class Printer(
 
 
     class Data {
-        var message: String = ""
-        var messages: List<String>? = null
+        var message = ""
         var throwable: Throwable? = null
-        var any: Any? = null
 
         internal lateinit var source: StackTraceElement
         internal lateinit var parent: StackTraceElement
@@ -143,5 +165,7 @@ internal class Printer(
         val DEBUG = 2
         val INFO = 3
         val WARM = 4
+        val ERROR = 5
+        val ASSERT = 6
     }
 }

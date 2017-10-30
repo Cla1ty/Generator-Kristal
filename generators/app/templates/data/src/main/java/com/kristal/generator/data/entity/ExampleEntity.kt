@@ -2,7 +2,7 @@ package <%= appPackage %>.data.entity
 
 import android.database.Cursor
 import com.google.gson.annotations.SerializedName
-import <%= appPackage %>.data.db.ExampleTable
+import <%= appPackage %>.data.db.ExampleTableExternal
 import <%= appPackage %>.data.db.tools.Db
 
 /**
@@ -19,8 +19,8 @@ class ExampleEntity {
     companion object {
         fun transform(cursor: Cursor): ExampleEntity =
                 ExampleEntity().apply {
-                    id = Db.getString(cursor, ExampleTable.ID)
-                    message = Db.getString(cursor, ExampleTable.MESSAGE)
+                    id = Db.getString(cursor, ExampleTableExternal.ID)
+                    message = Db.getString(cursor, ExampleTableExternal.MESSAGE)
                 }
     }
 }

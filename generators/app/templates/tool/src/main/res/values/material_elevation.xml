@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="elevation_dialog">24dp</dimen>
+    <dimen name="elevation_picker">24dp</dimen>
+    <dimen name="elevation_nav_drawer">16dp</dimen>
+    <dimen name="elevation_right_drawer">16dp</dimen>
+    <dimen name="elevation_modal_bottom_sheet_drawer">16dp</dimen>
+    <dimen name="elevation_floating_action_button_press">12dp</dimen>
+    <dimen name="elevation_sub_menu">9dp</dimen>
+    <dimen name="elevation_bottom_navigation_bar">8dp</dimen>
+    <dimen name="elevation_menu">8dp</dimen>
+    <dimen name="elevation_card_pick">8dp</dimen>
+    <dimen name="elevation_button_pressed">8dp</dimen>
+    <dimen name="elevation_floating_action_button">6dp</dimen>
+    <dimen name="elevation_snack_bar">6dp</dimen>
+    <dimen name="elevation_app_bar">4dp</dimen>
+    <dimen name="elevation_refresh_indicator">3dp</dimen>
+    <dimen name="elevation_search_bar_scrolled">3dp</dimen>
+    <dimen name="elevation_card">2dp</dimen>
+    <dimen name="elevation_button">2dp</dimen>
+    <dimen name="elevation_switch">1dp</dimen>
+</resources>

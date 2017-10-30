@@ -13,7 +13,7 @@ import <%= appPackage %>.presentation.presenter.ExamplePresenter
 import <%= appPackage %>.presentation.view.ExampleView
 import <%= appPackage %>.presentation.view.common.ColorText
 import <%= appPackage %>.presentation.view.fragment.base.BaseFragmentMvp
-import <%= appPackage %>.tool.log.Logger
+import <%= appPackage %>.tool.log.info
 import kotlinx.android.synthetic.main.fragment_learning.*
 
 
@@ -46,14 +46,12 @@ class ExampleFragment : BaseFragmentMvp<ExamplePresenter>(), ExampleView {
     }
 
     override fun renderView(datas: List<ExampleModel>) {
-        Logger.i("RENDER")
+        info("RENDER")
         datas
                 .map {
                     val data = it
                     ColorText(context, it)
                 }.forEach {
-            Logger.i("Grid $gridLayout")
-            Logger.i(message = "It $it")
             gridLayout.addView(it)
         }
     }

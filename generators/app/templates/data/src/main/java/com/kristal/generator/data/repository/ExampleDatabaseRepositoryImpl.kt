@@ -1,6 +1,6 @@
 package <%= appPackage %>.data.repository
 
-import <%= appPackage %>.data.db.ExampleTable
+import <%= appPackage %>.data.db.ExampleTableExternal
 import <%= appPackage %>.data.mapper.ExampleEntityMapper
 import <%= appPackage %>.domain.Example
 import <%= appPackage %>.domain.repository.ExampleDatabaseRepository
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 class ExampleDatabaseRepositoryImpl
 @Inject internal constructor(
-        private val table:ExampleTable,
+        private val table: ExampleTableExternal,
         private val mapper: ExampleEntityMapper
 ) : ExampleDatabaseRepository{
     override fun examples(search: String): Observable<List<Example>>  =

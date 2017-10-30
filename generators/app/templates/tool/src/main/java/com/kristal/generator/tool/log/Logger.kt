@@ -10,7 +10,7 @@ import org.jetbrains.annotations.TestOnly
 
 object Logger {
 
-    private var printer: Printer? = null
+    internal var printer: Printer? = null
 
     fun install(application: Application) {
         printer = Printer(application.packageName, Logger::class.java)
@@ -20,84 +20,36 @@ object Logger {
     fun install(context: Context) {
         printer = Printer(context.packageName, Logger::class.java)
     }
+}
 
-    fun root() {
-        printer?.root()
-    }
+fun printTree() {
+    Logger.printer?.root()
+}
 
-    fun lifecycle(fileName: String) {
-        printer?.lifecycle(fileName)
-    }
+fun printMethod(fileName: String) {
+    Logger.printer?.lifecycle(fileName)
+}
 
-    fun v(message: String) {
-        printer?.print(Printer.VERBOSE, {
-            this.message = message
-        })
-    }
+fun verbose(any: Any) {
+    Logger.printer?.printToSystem(Printer.VERBOSE, any)
+}
 
-    fun v(messages: List<String>) {
-        printer?.print(Printer.VERBOSE, {
-            this.messages = messages
-        })
-    }
+fun debug(any: Any) {
+    Logger.printer?.printToSystem(Printer.DEBUG, any)
+}
 
-    fun v(any: Any) {
-        printer?.print(Printer.VERBOSE, {
-            this.any = any
-        })
-    }
+fun info(any: Any) {
+    Logger.printer?.printToSystem(Printer.INFO, any)
+}
 
-    fun d(message: String) {
-        printer?.print(Printer.DEBUG, {
-            this.message = message
-        })
-    }
+fun warm(any: Any) {
+    Logger.printer?.printToSystem(Printer.WARM, any)
+}
 
-    fun d(messages: List<String>) {
-        printer?.print(Printer.DEBUG, {
-            this.messages = messages
-        })
-    }
+fun error(any: Any) {
+    Logger.printer?.printToSystem(Printer.ERROR, any)
+}
 
-    fun d(any: Any) {
-        printer?.print(Printer.DEBUG, {
-            this.any = any
-        })
-    }
-
-    fun i(message: String) {
-        printer?.print(Printer.INFO, {
-            this.message = message
-        })
-    }
-
-    fun i(messages: List<String>) {
-        printer?.print(Printer.INFO, {
-            this.messages = messages
-        })
-    }
-
-    fun i(any: Any) {
-        printer?.print(Printer.INFO, {
-            this.any = any
-        })
-    }
-
-    fun w(message: String) {
-        printer?.print(Printer.WARM, {
-            this.message = message
-        })
-    }
-
-    fun w(messages: List<String>) {
-        printer?.print(Printer.WARM, {
-            this.messages = messages
-        })
-    }
-
-    fun w(any: Any) {
-        printer?.print(Printer.WARM, {
-            this.any = any
-        })
-    }
+fun assert(any: Any) {
+    Logger.printer?.printToSystem(Printer.ASSERT, any)
 }

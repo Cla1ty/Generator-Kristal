@@ -7,14 +7,13 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import <%= appPackage %>.R
 import <%= appPackage %>.presentation.model.ExampleModel
 import <%= appPackage %>.presentation.presenter.ExampleDatabasePresenter
 import <%= appPackage %>.presentation.view.ExampleView
 import <%= appPackage %>.presentation.view.common.ColorText
 import <%= appPackage %>.presentation.view.fragment.base.BaseFragmentMvp
-import <%= appPackage %>.tool.log.Logger
+import <%= appPackage %>.tool.log.info
 import kotlinx.android.synthetic.main.fragment_learning.*
 
 
@@ -48,14 +47,12 @@ class ExampleDatabaseFragment : BaseFragmentMvp<ExampleDatabasePresenter>(), Exa
     }
 
     override fun renderView(datas: List<ExampleModel>) {
-        Logger.i("RENDER")
+        info("RENDER")
         datas
                 .map {
                     val data = it
                     ColorText(context, it)
                 }.forEach {
-            Logger.i("Grid $gridLayout")
-            Logger.i("It $it")
             gridLayout.addView(it)
         }
     }

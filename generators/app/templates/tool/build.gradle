@@ -10,6 +10,7 @@ android {
     defaultConfig {
         minSdkVersion globalConfiguration["minSdk"]
         targetSdkVersion globalConfiguration["targetSdk"]
+        vectorDrawables.useSupportLibrary = true
     }
 }
 
@@ -17,18 +18,20 @@ dependencies {
     def utilsDependencies = rootProject.ext.utilsDependencies
     def utilsTestDependencies = rootProject.ext.utilsTestDependencies
 
-    compile utilsDependencies.kotlin
-    compile utilsDependencies.glide
-    compile utilsDependencies.support
-    compile utilsDependencies.recyclerView
-    compile utilsDependencies.constraintLayout
-    compile utilsDependencies.cardView
+    implementation utilsDependencies.kotlin
 
-    testCompile utilsTestDependencies.junit
-    testCompile utilsTestDependencies.assertj
+    implementation utilsDependencies.glide
 
-    androidTestCompile utilsTestDependencies.junit
-    androidTestCompile utilsTestDependencies.assertj
-    androidTestCompile utilsTestDependencies.runner
-    androidTestCompile utilsTestDependencies.rules
+    implementation utilsDependencies.support
+    implementation utilsDependencies.recyclerView
+    implementation utilsDependencies.constraintLayout
+    implementation utilsDependencies.cardView
+
+    testImplementation utilsTestDependencies.junit
+    testImplementation utilsTestDependencies.assertj
+
+    androidTestImplementation utilsTestDependencies.junit
+    androidTestImplementation utilsTestDependencies.assertj
+    androidTestImplementation utilsTestDependencies.runner
+    androidTestImplementation utilsTestDependencies.rules
 }

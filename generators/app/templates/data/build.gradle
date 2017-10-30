@@ -22,26 +22,28 @@ android {
 }
 
 dependencies {
-    compile project(':domain')
+    implementation project(':tool')
+    implementation project(':domain')
 
     def dataDependencies = rootProject.ext.dataDependencies
     def dataTestDependencies = rootProject.ext.dataTestDependencies
 
-    compile dataDependencies.gson
-    compile dataDependencies.sqlbrite
-    compile dataDependencies.retrofit
-    compile dataDependencies.retrofitGson
-    compile dataDependencies.okHttpInterceptor
-    compile dataDependencies.rxJavaAdapter
+    implementation dataDependencies.dagger
+    implementation dataDependencies.gson
+    implementation dataDependencies.sqlbrite
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.retrofitGson
+    implementation dataDependencies.okHttpInterceptor
+    implementation dataDependencies.rxJavaAdapter
 
     kapt dataDependencies.daggerCompiler
 
-    testCompile dataTestDependencies.junit
-    testCompile dataTestDependencies.assertj
+    testImplementation dataTestDependencies.junit
+    testImplementation dataTestDependencies.assertj
 //    testCompile dataTestDependencies.runner
 //    testCompile dataTestDependencies.ruler
 //
 //    androidTestCompile dataTestDependencies.runner
 //    androidTestCompile dataTestDependencies.ruler
-    androidTestCompile dataTestDependencies.espresso
+//    androidTestImplementation dataTestDependencies.espresso
 }

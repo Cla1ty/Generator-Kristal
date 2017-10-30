@@ -16,18 +16,17 @@ android {
 
 
 dependencies {
-    compile project(':tool')
+    implementation project(':tool')
 
     def domainDependencies = rootProject.ext.domainDependencies
     def domainTestDependencies = rootProject.ext.domainTestDependencies
 
-    compile domainDependencies.kotlin
-    compile domainDependencies.dagger
-    compile domainDependencies.rxKotlin
+    implementation domainDependencies.dagger
+    implementation domainDependencies.rxKotlin
 
     kapt domainDependencies.daggerCompiler
 
-    testCompile domainTestDependencies.junit
-    testCompile domainTestDependencies.mockito
-    testCompile domainTestDependencies.assertj
+    testImplementation domainTestDependencies.junit
+    testImplementation domainTestDependencies.mockito
+    testImplementation domainTestDependencies.assertj
 }

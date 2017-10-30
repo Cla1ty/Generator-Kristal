@@ -4,7 +4,6 @@ import android.content.Context
 import <%= appPackage %>.data.executor.JobExecutor
 import <%= appPackage %>.data.file.ExampleFile
 import <%= appPackage %>.data.file.ExampleFileImpl
-import <%= appPackage %>.data.net.tools.NetworkModule
 import <%= appPackage %>.data.raw.ExampleRaw
 import <%= appPackage %>.data.raw.ExampleRawImpl
 import <%= appPackage %>.data.repository.ExampleDatabaseRepositoryImpl
@@ -30,8 +29,7 @@ import javax.inject.Singleton
         FragmentModule::class,
         ProviderModule::class,
         ReceiverModule::class,
-        ServiceModule::class,
-        NetworkModule::class
+        ServiceModule::class
 ))
 class ApplicationModule {
     @Provides

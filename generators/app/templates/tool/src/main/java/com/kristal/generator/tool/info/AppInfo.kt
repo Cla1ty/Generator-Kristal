@@ -2,7 +2,7 @@ package <%= appPackage %>.tool.info
 
 import android.content.Context
 import android.content.pm.PackageManager
-import <%= appPackage %>.tool.log.Logger
+import <%= appPackage %>.tool.log.info
 
 
 object AppInfo {
@@ -35,6 +35,6 @@ object AppInfo {
             e.printStackTrace()
         }
 
-        Logger.i(AppInfo::class.java)
+        info(AppInfo::class.java)
     }
 }

@@ -20,7 +20,7 @@ import javax.inject.Singleton
 class NetworkModule {
     @Singleton
     @Provides
-    internal fun provideRetrofit(): Retrofit {
+    fun provideRetrofit(): Retrofit {
         val interceptor =
                 Interceptor {
                     val url = it.request()

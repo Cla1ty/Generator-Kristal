@@ -12,17 +12,16 @@ import javax.inject.Singleton
  * Created by Dwi_Ari on 10/23/17.
  */
 
+@Singleton
 internal class SqlBriteHelper
 @Inject internal constructor(
         private val executor: ThreadExecutor
 ) {
-    @Singleton
-    fun getSqlBrite() = SqlBrite.Builder().build()
+    val sqlBrite = SqlBrite.Builder().build()
 
     fun getDatabase(helper: SQLiteOpenHelper): BriteDatabase =
-            getSqlBrite().wrapDatabaseHelper(helper, Schedulers.from(executor))
+            sqlBrite.wrapDatabaseHelper(helper, Schedulers.from(executor))
                     .apply {
                         setLoggingEnabled(true)
                     }
-
 }

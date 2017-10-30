@@ -2,6 +2,7 @@ package <%= appPackage %>.domain.interactor
 
 import <%= appPackage %>.domain.Example
 import <%= appPackage %>.domain.executor.PostExecutorThread
+import <%= appPackage %>.domain.interactor.base.UseCaseSqlBrite
 import <%= appPackage %>.domain.repository.ExampleDatabaseRepository
 import io.reactivex.Observable
 import javax.inject.Inject

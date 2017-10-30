@@ -1,10 +1,12 @@
-package <%= appPackage %>.domain.interactor
+package <%= appPackage %>.domain.interactor.base
 
 import <%= appPackage %>.domain.executor.PostExecutorThread
 import <%= appPackage %>.domain.executor.ThreadExecutor
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -16,7 +18,8 @@ internal constructor(
         private val threadExecutor: ThreadExecutor,
         private val postExecutorThread: PostExecutorThread
 ) {
-    private val disposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
+    private var disposable: Disposable? = null
 
     abstract fun build(params: PARAMS?): Observable<T>
 
@@ -25,10 +28,19 @@ internal constructor(
                 build(params).subscribeOn(Schedulers.from(threadExecutor))
                         .observeOn(postExecutorThread.getScheduler())
 
-        disposable.add(observable.subscribeWith(observer))
+        disposable = observable.subscribeWith(observer)
+                .addTo(compositeDisposable)
     }
 
     fun dispose() {
-        disposable.dispose()
+        if (!compositeDisposable.isDisposed)
+            compositeDisposable.dispose()
+    }
+
+    fun stop() {
+        if (disposable == null) return
+
+        if (!disposable!!.isDisposed)
+            disposable!!.dispose()
     }
 }

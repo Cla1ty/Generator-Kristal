@@ -1,6 +1,6 @@
 package <%= appPackage %>.presentation.presenter
 
-import <%= appPackage %>.domain.interactor.DefaultObserver
+import <%= appPackage %>.domain.interactor.base.DefaultDisposableObserver
 import <%= appPackage %>.domain.interactor.GetExamples
 import <%= appPackage %>.presentation.mapper.ExampleModelMapper
 import <%= appPackage %>.presentation.presenter.base.BasePresenter
@@ -22,7 +22,7 @@ class ExamplePresenter
     override fun start() {
         super.start()
         view.showLoading()
-        alphabets.execute(DefaultObserver(
+        alphabets.execute(DefaultDisposableObserver(
                 next = {
                     view.renderView(exampleMapper.transform(it))
                 },

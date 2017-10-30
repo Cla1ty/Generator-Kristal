@@ -2,6 +2,7 @@ package <%= appPackage %>.domain.interactor
 
 import <%= appPackage %>.domain.executor.PostExecutorThread
 import <%= appPackage %>.domain.executor.ThreadExecutor
+import <%= appPackage %>.domain.interactor.base.UseCase
 import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Test

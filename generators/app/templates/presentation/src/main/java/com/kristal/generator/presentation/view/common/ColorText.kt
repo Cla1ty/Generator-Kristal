@@ -2,6 +2,7 @@ package <%= appPackage %>.presentation.view.common
 
 import android.content.Context
 import android.graphics.Typeface
+import android.os.Build
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.TextView
@@ -22,7 +23,9 @@ class ColorText : TextView {
         text = model.id.toString()
         textSize = 50f
         typeface = Typeface.DEFAULT_BOLD
-        textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+        }
         gravity = Gravity.CENTER
 
         setTextColor(model.color)

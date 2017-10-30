@@ -1,9 +1,7 @@
 package <%= appPackage %>.tool.info
 
 import android.content.Context
-import android.provider.Settings
-import android.telephony.TelephonyManager
-import <%= appPackage %>.tool.log.Logger
+import <%= appPackage %>.tool.log.info
 
 /**
  * Created by Kristal on 2/7/2017.
@@ -18,8 +16,6 @@ object DeviceInfo {
         private set
     var density: Float = 0.toFloat()
         private set
-    var deviceId = ""
-        private set
 
     fun init(pContext: Context) {
         val lDisplayMetrics = pContext.resources.displayMetrics
@@ -27,13 +23,6 @@ object DeviceInfo {
         screenHeight = lDisplayMetrics.heightPixels
         density = lDisplayMetrics.density
         scaledDensity = lDisplayMetrics.scaledDensity
-        deviceId = Settings.Secure.getString(pContext.contentResolver, Settings.Secure.ANDROID_ID)
-        Logger.i(DeviceInfo::class.java)
-    }
-
-    fun initPermission(context: Context) {
-        val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        deviceId = telephonyManager.deviceId
-        Logger.i(DeviceInfo::class.java)
+        info(DeviceInfo::class.java)
     }
 }

@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 
 
-class MainActivity : BaseActivity() {
+class SplashActivity : BaseActivity() {
     override fun setup(): Setup = Setup(TAG)
 
     @Inject
@@ -20,7 +20,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_splash)
 
         if (app.lang == ApplicationRepository.NONE) {
             app.lang = ApplicationRepository.UK
@@ -37,6 +37,6 @@ class MainActivity : BaseActivity() {
     }
 
     companion object {
-        val TAG = MainActivity::class.java.simpleName!!
+        val TAG = SplashActivity::class.java.simpleName!!
     }
 }

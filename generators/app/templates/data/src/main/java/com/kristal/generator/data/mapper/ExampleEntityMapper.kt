@@ -1,7 +1,7 @@
 package <%= appPackage %>.data.mapper
 
 import android.content.ContentValues
-import <%= appPackage %>.data.db.ExampleTable
+import <%= appPackage %>.data.db.ExampleTableExternal
 import <%= appPackage %>.data.entity.ExampleEntity
 import <%= appPackage %>.domain.Example
 import javax.inject.Inject
@@ -24,7 +24,7 @@ internal class ExampleEntityMapper
 
     fun transform2ContentValue(entity: ExampleEntity) =
             ContentValues().apply {
-                put(ExampleTable.ID, entity.id)
-                put(ExampleTable.MESSAGE, entity.message)
+                put(ExampleTableExternal.ID, entity.id)
+                put(ExampleTableExternal.MESSAGE, entity.message)
             }
 }

@@ -1,4 +1,4 @@
-package <%= appPackage %>.presentation.view
+package <%= appPackage %>.presentation.view.base
 
 import android.content.Context
 

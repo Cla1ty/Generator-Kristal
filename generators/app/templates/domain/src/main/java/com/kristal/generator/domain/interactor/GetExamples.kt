@@ -3,6 +3,7 @@ package <%= appPackage %>.domain.interactor
 import <%= appPackage %>.domain.Example
 import <%= appPackage %>.domain.executor.PostExecutorThread
 import <%= appPackage %>.domain.executor.ThreadExecutor
+import <%= appPackage %>.domain.interactor.base.UseCase
 import <%= appPackage %>.domain.repository.ExampleRepository
 import io.reactivex.Observable
 import javax.inject.Inject
