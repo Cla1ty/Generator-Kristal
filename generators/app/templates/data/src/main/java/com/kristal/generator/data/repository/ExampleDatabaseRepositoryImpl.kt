@@ -1,7 +1,7 @@
 package <%= appPackage %>.data.repository
 
 import <%= appPackage %>.data.db.ExampleTableExternal
-import <%= appPackage %>.data.mapper.ExampleEntityMapper
+import <%= appPackage %>.data.file.mapper.toExample
 import <%= appPackage %>.domain.Example
 import <%= appPackage %>.domain.repository.ExampleDatabaseRepository
 import io.reactivex.Observable
@@ -15,9 +15,8 @@ import javax.inject.Singleton
 @Singleton
 class ExampleDatabaseRepositoryImpl
 @Inject internal constructor(
-        private val table: ExampleTableExternal,
-        private val mapper: ExampleEntityMapper
-) : ExampleDatabaseRepository{
-    override fun examples(search: String): Observable<List<Example>>  =
-            table.search(search).map { it.map { mapper.transform(it) } }
+        private val table: ExampleTableExternal
+) : ExampleDatabaseRepository {
+    override fun examples(search: String): Observable<List<Example>> =
+            table.search(search).map { it.map { it.toExample() } }
 }

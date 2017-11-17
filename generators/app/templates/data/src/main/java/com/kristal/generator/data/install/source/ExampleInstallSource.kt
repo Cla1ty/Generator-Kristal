@@ -1,6 +1,6 @@
 package <%= appPackage %>.data.install.source
 
-import <%= appPackage %>.data.entity.ExampleListEntity
+import <%= appPackage %>.data.file.entity.ExampleListEntity
 import io.reactivex.Observable
 
 /**

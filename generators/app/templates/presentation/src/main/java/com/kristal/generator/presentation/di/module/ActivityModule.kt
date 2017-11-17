@@ -1,6 +1,7 @@
 package <%= appPackage %>.presentation.di.module
 
 import <%= appPackage %>.presentation.di.module.base.EmptyModule
+import <%= appPackage %>.presentation.example_room.view.activity.RoomActivity
 import <%= appPackage %>.presentation.view.activity.HomeActivity
 import <%= appPackage %>.presentation.view.activity.SplashActivity
 import dagger.Module
@@ -17,4 +18,7 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector(modules = arrayOf(EmptyModule::class))
     internal abstract fun bindHome(): HomeActivity
+
+    @ContributesAndroidInjector(modules = arrayOf(EmptyModule::class))
+    internal abstract fun bindRoom(): RoomActivity
 }

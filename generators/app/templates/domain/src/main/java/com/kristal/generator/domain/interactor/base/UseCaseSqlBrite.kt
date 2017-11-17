@@ -5,6 +5,7 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.addTo
+import org.jetbrains.annotations.TestOnly
 
 /**
  * Created by Dwi_Ari on 10/13/17.
@@ -19,30 +20,31 @@ internal constructor(
 
     abstract fun build(params: PARAMS?): Observable<T>
 
-    fun execute(observer: DefaultObservable<T>, params: PARAMS? = null) {
+    fun execute(next: (T) -> Unit, error: (Throwable) -> Unit, params: PARAMS? = null) {
         val observable: Observable<T> =
                 build(params).observeOn(postExecutorThread.getScheduler())
 
         disposable = observable.subscribe(
                 {
-                    observer.complete.invoke()
-                    observer.next.invoke(it)
+                    next.invoke(it)
                 },
                 {
-                    observer.error.invoke(it)
+                    error.invoke(it)
                 }
         ).addTo(compositeDisposable)
     }
 
     fun dispose() {
-        if (!compositeDisposable.isDisposed)
-            compositeDisposable.dispose()
+        compositeDisposable.dispose()
     }
 
     fun stop() {
-        if (disposable == null) return
-
-        if (!disposable!!.isDisposed)
-            disposable!!.dispose()
+        disposable?.dispose()
     }
+
+    @TestOnly
+    fun isCompositeDispose() = compositeDisposable.isDisposed
+
+    @TestOnly
+    fun isDispose() = disposable?.isDisposed ?: false
 }

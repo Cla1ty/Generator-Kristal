@@ -2,8 +2,9 @@ package <%= appPackage %>.data.db
 
 import android.database.sqlite.SQLiteDatabase
 import <%= appPackage %>.data.db.source.ExampleHelperExternal
-import <%= appPackage %>.data.entity.ExampleEntity
-import <%= appPackage %>.data.mapper.ExampleEntityMapper
+import <%= appPackage %>.data.file.entity.ExampleEntity
+import <%= appPackage %>.data.file.mapper.toContentValue
+import <%= appPackage %>.data.file.mapper.toExampleEntity
 import <%= appPackage %>.domain.Example
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -15,8 +16,7 @@ import javax.inject.Inject
 
 internal class ExampleTableExternal
 @Inject constructor(
-        private val helper: ExampleHelperExternal,
-        private val mapper: ExampleEntityMapper
+        private val helper: ExampleHelperExternal
 ) {
     fun allData(): Observable<List<ExampleEntity>> =
             helper.getDatabase()
@@ -29,14 +29,14 @@ internal class ExampleTableExternal
                     .mapToList { ExampleEntity.transform(it) }
 
     fun insert(example: Example) {
-        val entity = mapper.transform(example)
-        val cv = mapper.transform2ContentValue(entity)
+        val entity = example.toExampleEntity()
+        val cv = entity.toContentValue()
         helper.getDatabase().insert(TABLE, cv, SQLiteDatabase.CONFLICT_REPLACE)
     }
 
     fun update(example: Example) {
-        val entity = mapper.transform(example)
-        val cv = mapper.transform2ContentValue(entity)
+        val entity = example.toExampleEntity()
+        val cv = entity.toContentValue()
         helper.getDatabase().update(TABLE, cv, "$ID = ${entity.id}")
     }
 

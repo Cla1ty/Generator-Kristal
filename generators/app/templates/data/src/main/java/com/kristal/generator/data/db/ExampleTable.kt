@@ -2,6 +2,8 @@ package <%= appPackage %>.data.db
 
 import android.database.sqlite.SQLiteDatabase
 import <%= appPackage %>.data.db.entity.ExampleEntity
+import <%= appPackage %>.data.db.mapper.toContentValues
+import <%= appPackage %>.data.db.mapper.toExampleEntity
 import <%= appPackage %>.data.db.source.ExampleHelper
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -16,14 +18,14 @@ internal class ExampleTable
 ) {
     fun allData(): Observable<List<ExampleEntity>> =
             helper.getDatabase().createQuery(TABLE, "SELECT * FROM $TABLE ORDER BY ${ExampleEntity.DATE_UPDATE} DESC")
-                    .mapToList { ExampleEntity.transform(it) }
+                    .mapToList { it.toExampleEntity() }
 
     fun anyData(entity: ExampleEntity): Observable<Boolean> =
             helper.getDatabase().createQuery(TABLE, "SELECT COUNT(*) FROM $TABLE WHERE ${ExampleEntity.KATA} == ?", entity.kata)
                     .mapToOne { it.getInt(0) >= 1 }
 
     fun insert(entity: ExampleEntity) {
-        helper.getDatabase().insert(TABLE, ExampleEntity.contentValues(entity), SQLiteDatabase.CONFLICT_REPLACE)
+        helper.getDatabase().insert(TABLE, entity.toContentValues(), SQLiteDatabase.CONFLICT_REPLACE)
     }
 
     fun delete(entity: ExampleEntity) {

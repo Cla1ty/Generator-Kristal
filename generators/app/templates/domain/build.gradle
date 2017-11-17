@@ -18,15 +18,15 @@ android {
 dependencies {
     implementation project(':tool')
 
-    def domainDependencies = rootProject.ext.domainDependencies
-    def domainTestDependencies = rootProject.ext.domainTestDependencies
+    def deps = rootProject.ext.deps
+    def testDeps = rootProject.ext.testDeps
 
-    implementation domainDependencies.dagger
-    implementation domainDependencies.rxKotlin
+    implementation deps.dagger
+    implementation deps.rxKotlin
 
-    kapt domainDependencies.daggerCompiler
+    kapt deps.daggerCompiler
 
-    testImplementation domainTestDependencies.junit
-    testImplementation domainTestDependencies.mockito
-    testImplementation domainTestDependencies.assertj
+    testImplementation testDeps.junit
+    testImplementation testDeps.mockito
+    testImplementation testDeps.assertj
 }

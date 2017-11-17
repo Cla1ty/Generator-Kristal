@@ -1,11 +1,11 @@
 package <%= appPackage %>.data.file
 
 import android.content.Context
-import <%= appPackage %>.data.entity.ExampleListEntity
+import <%= appPackage %>.data.file.entity.ExampleListEntity
 import <%= appPackage %>.data.exception.NotFoundException
 import <%= appPackage %>.data.file.base.BaseFile
 import <%= appPackage %>.data.file.tools.FileManager
-import <%= appPackage %>.data.mapper.serializer.Serializer
+import <%= appPackage %>.data.file.mapper.serializer.Serializer
 import <%= appPackage %>.domain.executor.ThreadExecutor
 import io.reactivex.Observable
 import java.io.File

@@ -19,31 +19,34 @@ android {
         it.buildConfigField('String', 'KEY', "\"1556b0ae02e34f9c0b83e43bbeca883e\"")
         it.buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
     implementation project(':tool')
     implementation project(':domain')
 
-    def dataDependencies = rootProject.ext.dataDependencies
-    def dataTestDependencies = rootProject.ext.dataTestDependencies
+    def deps = rootProject.ext.deps
+    def testDeps = rootProject.ext.testDeps
 
-    implementation dataDependencies.dagger
-    implementation dataDependencies.gson
-    implementation dataDependencies.sqlbrite
-    implementation dataDependencies.retrofit
-    implementation dataDependencies.retrofitGson
-    implementation dataDependencies.okHttpInterceptor
-    implementation dataDependencies.rxJavaAdapter
+    implementation deps.dagger
+    implementation deps.gson
+    implementation deps.sqlbrite
+    implementation deps.retrofit
+    implementation deps.retrofitGson
+    implementation deps.okHttpInterceptor
+    implementation deps.rxJavaAdapter
+    implementation deps.roomRuntime
+    implementation deps.roomRxJava2
 
-    kapt dataDependencies.daggerCompiler
+    kapt deps.roomCompiler
+    kapt deps.daggerCompiler
 
-    testImplementation dataTestDependencies.junit
-    testImplementation dataTestDependencies.assertj
-//    testCompile dataTestDependencies.runner
-//    testCompile dataTestDependencies.ruler
-//
-//    androidTestCompile dataTestDependencies.runner
-//    androidTestCompile dataTestDependencies.ruler
-//    androidTestImplementation dataTestDependencies.espresso
+    testImplementation testDeps.junit
+    testImplementation testDeps.assertj
+    testImplementation testDeps.mockito
+    testImplementation testDeps.robolectric
 }

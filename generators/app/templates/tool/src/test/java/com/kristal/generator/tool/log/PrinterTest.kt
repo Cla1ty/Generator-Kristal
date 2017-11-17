@@ -30,8 +30,11 @@ class PrinterTest {
     @Test
     fun any() {
         val data = Printer.Data()
-        printer.getMessage(data, data)
+        val data2 = Data("Nama", "Message")
+        printer.getMessage(data2, data)
         println(data.message)
     }
+
+    class Data(val name:String, val message:String)
 
 }

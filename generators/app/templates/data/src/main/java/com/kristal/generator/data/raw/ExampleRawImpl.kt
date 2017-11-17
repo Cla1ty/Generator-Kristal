@@ -2,8 +2,8 @@ package <%= appPackage %>.data.raw
 
 import android.text.TextUtils
 import <%= appPackage %>.data.R
-import <%= appPackage %>.data.entity.ExampleListEntity
-import <%= appPackage %>.data.mapper.serializer.Serializer
+import <%= appPackage %>.data.file.entity.ExampleListEntity
+import <%= appPackage %>.data.file.mapper.serializer.Serializer
 import <%= appPackage %>.data.raw.tools.RawManager
 import io.reactivex.Observable
 import javax.inject.Inject

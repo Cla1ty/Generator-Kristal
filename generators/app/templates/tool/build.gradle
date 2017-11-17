@@ -15,23 +15,19 @@ android {
 }
 
 dependencies {
-    def utilsDependencies = rootProject.ext.utilsDependencies
-    def utilsTestDependencies = rootProject.ext.utilsTestDependencies
+    def implDependencies = rootProject.ext.deps
+    def testDependencies = rootProject.ext.testDeps
 
-    implementation utilsDependencies.kotlin
+    implementation implDependencies.kotlin
+    implementation implDependencies.glide
+    implementation implDependencies.appcompat
+    implementation implDependencies.recyclerView
+    implementation implDependencies.constraintLayout
+    implementation implDependencies.cardView
+    implementation implDependencies.lifecycleExtension
 
-    implementation utilsDependencies.glide
-
-    implementation utilsDependencies.support
-    implementation utilsDependencies.recyclerView
-    implementation utilsDependencies.constraintLayout
-    implementation utilsDependencies.cardView
-
-    testImplementation utilsTestDependencies.junit
-    testImplementation utilsTestDependencies.assertj
-
-    androidTestImplementation utilsTestDependencies.junit
-    androidTestImplementation utilsTestDependencies.assertj
-    androidTestImplementation utilsTestDependencies.runner
-    androidTestImplementation utilsTestDependencies.rules
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.assertj
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.robolectric
 }

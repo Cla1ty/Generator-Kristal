@@ -54,7 +54,6 @@ module.exports = Generator.extend({
     var packageDir = this.props.appPackage.replace(/\./g, '/') + '/' + dir + '/';
 
     mkdirp(dir);
-    mkdirp(dir + '/src/androidTest/java/' + packageDir);
     mkdirp(dir + '/src/main/java/' + packageDir);
     mkdirp(dir + '/src/test/java/' + packageDir);
 
@@ -63,7 +62,6 @@ module.exports = Generator.extend({
     this.fs.copy(this.sourceRoot() + '/' + dir + '/build.gradle',  dir + '/build.gradle');
     this.fs.copy(this.sourceRoot() + '/' + dir + '/src/main/res',  dir + '/src/main/res');
 
-    this.fs.copyTpl(this.sourceRoot() + '/' + dir + '/src/androidTest/java/com/kristal/generator/' + dir,  dir + '/src/androidTest/java/' + packageDir, this.props);
     this.fs.copyTpl(this.sourceRoot() + '/' + dir + '/src/test/java/com/kristal/generator/' + dir,  dir + '/src/test/java/' + packageDir, this.props);
     this.fs.copyTpl(this.sourceRoot() + '/' + dir + '/src/main/java/com/kristal/generator/' + dir,  dir + '/src/main/java/' + packageDir, this.props);
     this.fs.copyTpl(this.sourceRoot() + '/' + dir + '/src/main/AndroidManifest.xml',  dir + '/src/main/AndroidManifest.xml', this.props);
@@ -72,7 +70,7 @@ module.exports = Generator.extend({
     packageDir = this.props.appPackage.replace(/\./g, '/') + '/' + dir + '/';
 
     mkdirp(dir);
-    mkdirp(dir + '/src/androidTest/java/' + packageDir);
+    // mkdirp(dir + '/src/androidTest/java/' + packageDir);
     mkdirp(dir + '/src/main/java/' + packageDir);
     mkdirp(dir + '/src/test/java/' + packageDir);
 
@@ -90,7 +88,6 @@ module.exports = Generator.extend({
     packageDir = this.props.appPackage.replace(/\./g, '/') + '/' + dir + '/';
 
     mkdirp(dir);
-    mkdirp(dir + '/src/androidTest/java/' + packageDir);
     mkdirp(dir + '/src/main/java/' + packageDir);
     mkdirp(dir + '/src/test/java/' + packageDir);
 
@@ -99,7 +96,6 @@ module.exports = Generator.extend({
     this.fs.copy(this.sourceRoot() + '/' + dir + '/build.gradle',  dir + '/build.gradle');
     this.fs.copy(this.sourceRoot() + '/' + dir + '/src/main/res',  dir + '/src/main/res');
 
-    this.fs.copyTpl(this.sourceRoot() + '/data/src/androidTest/java/com/kristal/generator/data', 'data/src/androidTest/java/' + packageDir, this.props);
     this.fs.copyTpl(this.sourceRoot() + '/data/src/test/java/com/kristal/generator/data', 'data/src/test/java/' + packageDir, this.props);
     this.fs.copyTpl(this.sourceRoot() + '/data/src/main/java/com/kristal/generator/data', 'data/src/main/java/' + packageDir, this.props);
     this.fs.copyTpl(this.sourceRoot() + '/data/src/main/AndroidManifest.xml', 'data/src/main/AndroidManifest.xml', this.props);

@@ -18,5 +18,4 @@ internal class ExampleHelperExternal
         private val helper: SqlBriteHelper
 ) : BaseHelperExternal(context, "data.db") {
     fun getDatabase(): BriteDatabase = helper.getDatabase(this)
-
 }

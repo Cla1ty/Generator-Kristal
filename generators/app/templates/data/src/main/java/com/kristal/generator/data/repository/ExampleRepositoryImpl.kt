@@ -1,6 +1,6 @@
 package <%= appPackage %>.data.repository
 
-import <%= appPackage %>.data.mapper.ExampleListEntityMapper
+import <%= appPackage %>.data.file.mapper.toListExample
 import <%= appPackage %>.data.repository.source.ExampleSourceFactory
 import <%= appPackage %>.domain.Example
 import <%= appPackage %>.domain.repository.ExampleRepository
@@ -15,9 +15,8 @@ import javax.inject.Singleton
 @Singleton
 class ExampleRepositoryImpl
 @Inject internal constructor(
-        private val factory: ExampleSourceFactory,
-        private val mapper: ExampleListEntityMapper
+        private val factory: ExampleSourceFactory
 ) : ExampleRepository {
     override fun examples(): Observable<List<Example>> =
-            factory.create().alphabetListEntity().map { mapper.transform(it) }
+            factory.create().alphabetListEntity().map { it.toListExample() }
 }

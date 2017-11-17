@@ -1,6 +1,7 @@
 package <%= appPackage %>.presentation.di.module
 
 import android.content.Context
+import <%= appPackage %>.data.example_room.db.RoomModule
 import <%= appPackage %>.data.executor.JobExecutor
 import <%= appPackage %>.data.file.ExampleFile
 import <%= appPackage %>.data.file.ExampleFileImpl
@@ -29,7 +30,8 @@ import javax.inject.Singleton
         FragmentModule::class,
         ProviderModule::class,
         ReceiverModule::class,
-        ServiceModule::class
+        ServiceModule::class,
+        RoomModule::class
 ))
 class ApplicationModule {
     @Provides

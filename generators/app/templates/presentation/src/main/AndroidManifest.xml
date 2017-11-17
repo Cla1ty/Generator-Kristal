@@ -19,6 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.view.activity.HomeActivity" />
+        <activity android:name=".presentation.example_room.view.activity.RoomActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

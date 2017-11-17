@@ -1,7 +1,6 @@
 package <%= appPackage %>.presentation.presenter
 
 import <%= appPackage %>.domain.interactor.GetExamplesFromDatabase
-import <%= appPackage %>.domain.interactor.base.DefaultObservable
 import <%= appPackage %>.presentation.mapper.ExampleModelMapper
 import <%= appPackage %>.presentation.presenter.base.BasePresenter
 import <%= appPackage %>.presentation.view.ExampleView
@@ -22,19 +21,14 @@ class ExampleDatabasePresenter
     override fun start() {
         super.start()
         view.showLoading()
-        alphabets.execute(DefaultObservable(
-                next = {
+        alphabets.execute(
+                {
                     view.hideLoading()
-
                     view.renderView(exampleMapper.transform(it))
                 },
-                error = {
+                {
                     view.showError(it.message!!)
-                },
-                complete = {
-                    view.hideLoading()
                 }
-
-        ), "a")
+                , "a")
     }
 }

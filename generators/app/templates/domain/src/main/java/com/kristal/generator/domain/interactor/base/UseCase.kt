@@ -21,11 +21,12 @@ internal constructor(
     private val compositeDisposable = CompositeDisposable()
     private var disposable: Disposable? = null
 
-    abstract fun build(params: PARAMS?): Observable<T>
+    abstract fun build(params: PARAMS? = null): Observable<T>
 
     fun execute(observer: DisposableObserver<T>, params: PARAMS?) {
         val observable: Observable<T> =
-                build(params).subscribeOn(Schedulers.from(threadExecutor))
+                build(params)
+                        .subscribeOn(Schedulers.from(threadExecutor))
                         .observeOn(postExecutorThread.getScheduler())
 
         disposable = observable.subscribeWith(observer)
@@ -33,14 +34,10 @@ internal constructor(
     }
 
     fun dispose() {
-        if (!compositeDisposable.isDisposed)
-            compositeDisposable.dispose()
+        compositeDisposable.dispose()
     }
 
     fun stop() {
-        if (disposable == null) return
-
-        if (!disposable!!.isDisposed)
-            disposable!!.dispose()
+        disposable?.dispose()
     }
 }

@@ -37,7 +37,7 @@ abstract class BaseRecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewHolder
         val name = data!![position]::class.java.name
         return (0 until itemLayouts.size)
                 .firstOrNull { itemLayouts[it].id == name }
-                ?: -1
+                ?: throw IllegalArgumentException("Item Layout Not Found")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerViewHolder {

@@ -1,7 +1,7 @@
 package <%= appPackage %>.data.install
 
+import <%= appPackage %>.data.file.mapper.toListExample
 import <%= appPackage %>.data.install.source.ExampleInstallFactory
-import <%= appPackage %>.data.mapper.ExampleListEntityMapper
 import <%= appPackage %>.domain.Example
 import <%= appPackage %>.domain.install.ExampleInstall
 import io.reactivex.Observable
@@ -15,8 +15,8 @@ import javax.inject.Singleton
 @Singleton
 class ExampleInstallImpl
 @Inject internal constructor(
-        private val factory: ExampleInstallFactory,
-        private val mapper: ExampleListEntityMapper
+        private val factory: ExampleInstallFactory
 ) : ExampleInstall {
-    override fun datas(): Observable<List<Example>> = factory.create().examples().map { mapper.transform(it) }
+    override fun datas():
+            Observable<List<Example>> = factory.create().examples().map { it.toListExample() }
 }
