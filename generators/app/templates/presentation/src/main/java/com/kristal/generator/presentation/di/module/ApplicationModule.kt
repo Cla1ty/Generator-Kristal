@@ -1,20 +1,20 @@
 package <%= appPackage %>.presentation.di.module
 
 import android.content.Context
-import <%= appPackage %>.data.example_room.db.RoomModule
+import <%= appPackage %>.data.example.room.db.RoomModule
 import <%= appPackage %>.data.executor.JobExecutor
-import <%= appPackage %>.data.file.ExampleFile
-import <%= appPackage %>.data.file.ExampleFileImpl
-import <%= appPackage %>.data.raw.ExampleRaw
-import <%= appPackage %>.data.raw.ExampleRawImpl
+import <%= appPackage %>.data.example.file.file.ExampleFile
+import <%= appPackage %>.data.example.file.file.ExampleFileImpl
+import <%= appPackage %>.data.example.raw.raw.ExampleRaw
+import <%= appPackage %>.data.example.raw.raw.ExampleRawImpl
 import <%= appPackage %>.data.repository.ExampleDatabaseRepositoryImpl
 import <%= appPackage %>.data.repository.ExamplePreferencenRepositoryImpl
 import <%= appPackage %>.data.repository.ExampleRepositoryImpl
 import <%= appPackage %>.domain.executor.PostExecutorThread
 import <%= appPackage %>.domain.executor.ThreadExecutor
 import <%= appPackage %>.domain.repository.ApplicationRepository
-import <%= appPackage %>.domain.repository.ExampleDatabaseRepository
-import <%= appPackage %>.domain.repository.ExampleRepository
+import <%= appPackage %>.domain.example.database.repository.ExampleDatabaseRepository
+import <%= appPackage %>.domain.example.raw.repository.ExampleRepository
 import <%= appPackage %>.presentation.AndroidApplication
 import <%= appPackage %>.presentation.UIThread
 import dagger.Module

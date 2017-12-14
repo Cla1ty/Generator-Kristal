@@ -6,7 +6,7 @@ import android.os.Build
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.TextView
-import <%= appPackage %>.presentation.model.ExampleModel
+import <%= appPackage %>.presentation.example.database.model.ExampleModel
 
 /**
  * Created by Dwi_Ari on 10/20/17.

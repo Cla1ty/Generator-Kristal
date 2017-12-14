@@ -36,5 +36,4 @@ abstract class BaseActivityMvp<PRESENTER : BasePresenter<*>>
         super.onDestroy()
         presenter.destroy()
     }
-
 }

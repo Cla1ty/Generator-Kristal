@@ -1,5 +1,6 @@
 package <%= appPackage %>.domain
 
+import <%= appPackage %>.domain.example.Example
 import org.assertj.core.api.Assertions
 import org.junit.Before
 import org.junit.Test

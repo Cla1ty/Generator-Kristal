@@ -46,7 +46,7 @@ fun warm(any: Any) {
     Logger.printer?.printToSystem(Printer.WARM, any)
 }
 
-fun error(any: Any) {
+fun err(any: Any) {
     Logger.printer?.printToSystem(Printer.ERROR, any)
 }
 

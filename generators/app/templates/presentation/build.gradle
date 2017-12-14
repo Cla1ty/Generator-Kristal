@@ -59,6 +59,7 @@ dependencies {
     implementation implDependencies.daggerAndroid
     implementation implDependencies.daggerAndroidSupport
 
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     kapt implDependencies.daggerCompiler
     kapt implDependencies.daggerAndroidProcessor
 

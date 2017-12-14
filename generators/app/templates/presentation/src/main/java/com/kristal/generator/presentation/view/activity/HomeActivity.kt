@@ -3,9 +3,8 @@ package <%= appPackage %>.presentation.view.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import <%= appPackage %>.presentation.example.recyclerview.view.fragment.RecyclerViewFragment
 import <%= appPackage %>.presentation.view.activity.base.BaseActivity
-import <%= appPackage %>.presentation.view.fragment.ExampleDatabaseFragment
-import <%= appPackage %>.presentation.view.fragment.RecyclerViewFragment
 
 
 class HomeActivity : BaseActivity() {

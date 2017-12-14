@@ -1,9 +1,9 @@
 package <%= appPackage %>.data.repository
 
-import <%= appPackage %>.data.file.mapper.toListExample
+import <%= appPackage %>.data.example.file.file.mapper.toListExample
 import <%= appPackage %>.data.repository.source.ExampleSourceFactory
-import <%= appPackage %>.domain.Example
-import <%= appPackage %>.domain.repository.ExampleRepository
+import <%= appPackage %>.domain.example.Example
+import <%= appPackage %>.domain.example.raw.repository.ExampleRepository
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton

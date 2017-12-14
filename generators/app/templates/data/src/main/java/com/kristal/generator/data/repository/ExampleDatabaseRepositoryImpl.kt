@@ -1,9 +1,9 @@
 package <%= appPackage %>.data.repository
 
-import <%= appPackage %>.data.db.ExampleTableExternal
-import <%= appPackage %>.data.file.mapper.toExample
-import <%= appPackage %>.domain.Example
-import <%= appPackage %>.domain.repository.ExampleDatabaseRepository
+import <%= appPackage %>.data.example.database.db.ExampleTableExternal
+import <%= appPackage %>.data.example.file.file.mapper.toExample
+import <%= appPackage %>.domain.example.Example
+import <%= appPackage %>.domain.example.database.repository.ExampleDatabaseRepository
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton

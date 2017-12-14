@@ -8,7 +8,7 @@ import android.widget.Toast
 import <%= appPackage %>.presentation.navigation.Navigator
 import <%= appPackage %>.presentation.utils.FragmentHelper
 import <%= appPackage %>.presentation.view.activity.base.BaseActivity
-import <%= appPackage %>.tool.log.debug
+import <%= appPackage %>.tool.log.err
 import <%= appPackage %>.tool.log.printMethod
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -69,7 +69,7 @@ abstract class BaseFragment : Fragment() {
             FragmentHelper.getFragment(childFragmentManager, clazz)
 
     protected fun toast(message: String) {
-        debug(message)
+        err(message)
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
     }
 }

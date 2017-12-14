@@ -1,10 +1,10 @@
 package <%= appPackage %>.presentation.di.module
 
 import <%= appPackage %>.presentation.di.module.base.EmptyModule
-import <%= appPackage %>.presentation.example_room.view.fragment.RoomFragment
-import <%= appPackage %>.presentation.view.fragment.ExampleDatabaseFragment
-import <%= appPackage %>.presentation.view.fragment.ExampleFragment
-import <%= appPackage %>.presentation.view.fragment.RecyclerViewFragment
+import <%= appPackage %>.presentation.example.room.view.fragment.RoomFragment
+import <%= appPackage %>.presentation.example.database.view.fragment.ExampleDatabaseFragment
+import <%= appPackage %>.presentation.example.database.view.fragment.ExampleFragment
+import <%= appPackage %>.presentation.example.recyclerview.view.fragment.RecyclerViewFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

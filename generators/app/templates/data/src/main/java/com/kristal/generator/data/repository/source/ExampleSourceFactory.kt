@@ -1,7 +1,7 @@
 package <%= appPackage %>.data.repository.source
 
-import <%= appPackage %>.data.file.ExampleFile
-import <%= appPackage %>.data.raw.ExampleRaw
+import <%= appPackage %>.data.example.file.file.ExampleFile
+import <%= appPackage %>.data.example.raw.raw.ExampleRaw
 import javax.inject.Inject
 import javax.inject.Singleton
 

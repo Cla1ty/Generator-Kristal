@@ -9,7 +9,9 @@ import android.view.ViewGroup
  * Created by Kristal on 6/14/2017.
  */
 
-abstract class BaseRecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewHolder>() {
+abstract class BaseRecyclerViewAdapter(
+        vararg items:BaseItemLayout<*>
+) : RecyclerView.Adapter<RecyclerViewHolder>() {
     private val itemLayouts = ArrayList<BaseItemLayout<*>>()
 
     var data: List<RecyclerViewData>? = null
@@ -33,11 +35,25 @@ abstract class BaseRecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewHolder
             result.dispatchUpdatesTo(this)
         }
 
+    var recyclerView: RecyclerView? = null
+        set(value) {
+            field = value
+            field?.apply { build(this) }
+        }
+
+    init {
+        items.forEach {
+            itemLayouts.add(it)
+        }
+    }
+
+    abstract fun build(recyclerView: RecyclerView)
+
     override fun getItemViewType(position: Int): Int {
         val name = data!![position]::class.java.name
         return (0 until itemLayouts.size)
                 .firstOrNull { itemLayouts[it].id == name }
-                ?: throw IllegalArgumentException("Item Layout Not Found")
+                ?: throw IllegalArgumentException("Item Layout \"$name\" Not Found")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerViewHolder {
@@ -55,9 +71,5 @@ abstract class BaseRecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewHolder
     }
 
     override fun getItemCount(): Int = data?.size ?: 0
-
-    protected fun <DATA : RecyclerViewData> register(itemLayout: BaseItemLayout<DATA>) {
-        itemLayouts.add(itemLayout)
-    }
 }
 

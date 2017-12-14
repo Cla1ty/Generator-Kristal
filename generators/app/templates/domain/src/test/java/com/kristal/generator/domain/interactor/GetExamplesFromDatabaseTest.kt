@@ -1,7 +1,8 @@
 package <%= appPackage %>.domain.interactor
 
+import <%= appPackage %>.domain.example.database.interactor.GetExamplesFromDatabase
 import <%= appPackage %>.domain.executor.PostExecutorThread
-import <%= appPackage %>.domain.repository.ExampleDatabaseRepository
+import <%= appPackage %>.domain.example.database.repository.ExampleDatabaseRepository
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
